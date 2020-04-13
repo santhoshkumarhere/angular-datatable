@@ -1,0 +1,96 @@
+<div>
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)" class="example-form">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>First Name</mat-label>    
+      <input matInput placeholder="First Name" type="text" formControlName="firstName"> 
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Last Name" formControlName="lastName"> 
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Customer ID</mat-label>
+        <input matInput placeholder="Customer ID" value="" type="number" formControlName="customerID"> 
+      </mat-form-field>
+  
+    <button mat-button type="submit">Search</button>  
+</form>
+  
+
+</div>
+<div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  <!--   displayedColumns: string[] = ['CustomerID', 'DeviceUsageID', 'FirstName', 'LastName','LogEntryTime', 'FormatStr','ModifyDate','ModifyUserName'];
+-->
+    <!-- CustomerID Column -->
+    <ng-container matColumnDef="CustomerID">
+      <th mat-header-cell *matHeaderCellDef> Customer ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.CustomerID}} </td>
+    </ng-container>
+  
+    <!-- Device UsageID  Column -->
+    <ng-container matColumnDef="DeviceUsageID">
+      <th mat-header-cell *matHeaderCellDef> Device Usage ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.DeviceUsageID}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="FirstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="LogEntryTime">
+        <th mat-header-cell *matHeaderCellDef> Log Entry Time</th>
+        <td mat-cell *matCellDef="let element"> {{element.LogEntryTime}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="FormatStr">
+        <th mat-header-cell *matHeaderCellDef> Format Str</th>
+        <td mat-cell *matCellDef="let element"> {{element.FormatStr}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="ModifyDate">
+        <th mat-header-cell *matHeaderCellDef> Modify Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.ModifyDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ModifyUserName">
+        <th mat-header-cell *matHeaderCellDef> Modify User Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.ModifyUserName}} </td>
+      </ng-container>
+
+<!--       
+      <ng-container matColumnDef="TestID">
+        <th mat-header-cell *matHeaderCellDef> Test ID</th>
+        <td mat-cell *matCellDef="let element">
+            <mat-form-field >
+                <mat-label>Customer ID</mat-label>
+                <input matInput placeholder="Customer ID" value="" type="number" [value]= > 
+              </mat-form-field>
+                </td>
+      </ng-container> -->
+   
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+  </div>    
+  
+  
+  <!-- Copyright 2019 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
